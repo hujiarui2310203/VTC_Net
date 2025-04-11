@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VisTacPoint</title>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+  
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+  
+      gtag('js', new Date());
+  
+      gtag('config', 'G-PYVRSFMDRL');
+    </script>
+  
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+  
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <style>
+      body {
+          margin: 0;
+          padding: 10px; /* 页面两边的间距 */
+          font-family: Arial, sans-serif;
+      }
+
+      section {
+          margin-bottom: 10px; /* 每个section之间的间距 */
+      }
+
+      /* Section 1 样式 */
+      .section1 {
+          background-color: #f0f8ff;
+          padding: 5px;
+          /* border-left: 5px solid #007BFF; */
+          font-size: 20px; /* 字体大小 */
+          font-weight: bold; /* 字体粗体 */
+      }
+
+      /* Section 2 样式 */
+      .section2 {
+          /* background-color: #f8d7da; */
+          padding: 10px;
+          /* border-left: 5px solid #dc3545; */
+          font-size: 8px; /* 字体大小 */
+          font-weight: bold; /* 字体粗体 */
+          color: #d00606;
+          margin-top: 3px;
+      }
+
+      /* Section 3 样式 */
+      .section3 {
+          /* background-color: #f8d7da; */
+          padding: 1px;
+          /* border-left: 5px solid #dc3545; */
+          font-size: 8px; /* 字体大小 */
+          font-weight: bold; /* 字体粗体 */
+          color: #220202;
+      }
+      .sectionab {
+      /* 你可以根据需要调整section的外边距 */
+      margin: 7px;
+    }
+ 
+    .publication-abs {
+      text-align: justify; /* 设置文本两端对齐 */
+      font-size: 20px; /* 设置字体大小 */
+      padding: 0 10px; 
+      font-weight: bold
+      /* 如果需要上下内边距，可以添加类似下面的行 */
+      /* margin-top: 10px; */
+      /* margin-bottom: 10px; */
+    }
+
+ 
+    .publication-text {
+      text-align: justify; /* 设置文本两端对齐 */
+      font-size: 20px; /* 设置字体大小 */
+      padding: 1px 40px; /* 增加上下和左右的内边距，左右设置为40px以增加两端距离 */
+      font-weight: bold; /* 字体加粗 */
+      /* 如果需要上下外边距，可以添加类似下面的行 */
+      /* margin-top: 10px; */
+      /* margin-bottom: 10px; */
+      line-height: 1.6; /* 可选：增加行高以提高可读性 */
+    }
+/* 
+      .img {
+              margin-top: 1px; 
+            }
+          
+            .img img {
+              max-width: 60%; 
+              height: auto;
+            }
+          
+            .img .content {
+              margin-top: 3px; 
+              font-size: 5px;
+              text-align: center;
+              line-height: 1.6; 
+            } */
+    .img img {
+        max-width: 50%;
+        /* width: 1200px;  */
+        height: auto; /* 保持图片宽高比 */
+      }
+ 
+  /* 设置当前 section 与上一个 section 的间距 */
+      .img {
+        margin-top: 5px; /* 调整间距大小，例如 20px */
+      }
+  </style>
+  </head>
+<body>
+  <section class="section1">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- 标题 -->
+            <h1 class="title is-1 publication-title">VisTacPoint: A Visual and Tactile Multi-modal Fusion Dataset towards Embodied Perception</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section2">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Feng Luan, </span>
+              <span class="author-block">Jiarui Hu, </span>
+              <span class="author-block">Changshi Zhou, </span>
+              <span class="author-block">Zheng Yan, </span>
+              <span class="author-block">Zhipeng Wang, </span>
+              <span class="author-block">Yanmin Zhou, </span>
+              <span class="author-block">Jiguang Yue, </span>
+              <span class="author-block">Bin He</span>
+            </div>
+   
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Tongji University</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sectionab">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-8 publication-abs">
+              Abstract: Collecting and understanding three-dimensional (3D) information is critical to improving the intelligence of robots. 
+              Robots typically rely on vision devices equipped at fixed positions to acquire 3D information about target objects. 
+              However, the data captured by the robot is often limited to a single perspective, resulting in partial information and posing significant 
+              challenges to subsequent tasks such as grasping and navigation.
+              Tactile sense, an essential part of robotic perception, gives robots more precise local object features. 
+              The fusion of vision and tactile is appealing, which can help robots to fully understand object properties and shapes to improve the success 
+              rate of robotic task execution. Unfortunately, there is a lack of comprehensive real-world datasets that integrate information from these two 
+              perceptual modalities. Therefore, we have meticulously constructed a spatially aligned visual-tactile dataset derived from real-world scenarios, 
+              called VisTacPoint, which includes visual and tactile point clouds as well as raw tactile data. The VisTacPoint dataset contains data for a total 
+              of 207 desktop objects across 8 categories. Our dataset can be widely applied to object understanding tasks such as 3D reconstruction, 
+              object recognition based on vision-tactile fusion, empowering robotic embodied and spatial intelligence. Furthermore, to accommodate diverse task 
+              requirements, we have constructed multiple variants of VisTacPoint for selection. Multiple visual-tactile fusion methods were applied to VisTacPoint 
+              for different tasks. Finally, the challenges of multi-modal fusion for robotic embodied perception are summarized.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="img">
+    <div style="display: flex; justify-content: center; align-items: center;">  
+      <img src="./static/images/FIGBRAIN.png" alt="Centered Image"/>  
+    </div>
+  </section>
+  <section class="section3">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Fig. 1: Multi-modal learning process and its applications. </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-8 publication-text">
+              Multi-modal learning is a key area in Artificial Intelligence (AI) research, focusing on integrating information from diverse sources, 
+              such as vision, sound, text and touch, to enhance machine learning models [18][19][20]. Recently, this field has witnessed significant 
+              advancements and broad applications. This paper specifically explores fusion techniques for visual and tactile data. 
+              Visual-tactile fusion is crucial for enabling robotic systems to achieve comprehensive object understanding and dexterous manipulation, 
+              mirroring human-like interaction capabilities. Visual sensors can capture high-resolution images, enabling robots to accurately identify 
+              the position and shape of objects [21][22]. Tactile sensors, on the other hand, can detect physical properties such as hardness and 
+              texture [23][24]. Combining these two types of data can improve recognition accuracy, particularly for objects that appear similar but 
+              differ in physical characteristics. The visual-tactile multi-modal learning process and its applications are illustrated in Fig. 1. The 
+              multi-modal perception model acts as the brain of a robot, providing the cognitive foundation for subsequent tasks, such as object 
+              understanding and robotic grasping, by processing data from its sensing devices.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="sectionfig1text">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-8 publication-text">
+              Multi-modal learning is a key area in Artificial Intelligence (AI) research, focusing on integrating information from diverse sources, 
+              such as vision, sound, text and touch, to enhance machine learning models [18][19][20]. Recently, this field has witnessed significant 
+              advancements and broad applications. This paper specifically explores fusion techniques for visual and tactile data. 
+              Visual-tactile fusion is crucial for enabling robotic systems to achieve comprehensive object understanding and dexterous manipulation, 
+              mirroring human-like interaction capabilities. Visual sensors can capture high-resolution images, enabling robots to accurately identify 
+              the position and shape of objects [21][22]. Tactile sensors, on the other hand, can detect physical properties such as hardness and 
+              texture [23][24]. Combining these two types of data can improve recognition accuracy, particularly for objects that appear similar but 
+              differ in physical characteristics. The visual-tactile multi-modal learning process and its applications are illustrated in Fig. 1. The 
+              multi-modal perception model acts as the brain of a robot, providing the cognitive foundation for subsequent tasks, such as object 
+              understanding and robotic grasping, by processing data from its sensing devices.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  
+  <section class="img">
+    <div style="display: flex; justify-content: center; align-items: center;">  
+      <img src="./static/images/table.png" alt="Centered Image"/>  
+    </div>
+  </section>
+
+  <section class="section3">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Table 1 A summary of datasets available for visual-tactile fusion. </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-8 publication-text">
+              High-quality datasets are essential for training and improving multi-modal learning models. Datasets can provide sufficient 
+              training samples for the model to adequately learn the desired features and ensure that the model operates effectively in different 
+              scenarios and conditions. In recent years, numerous visual-tactile multi-modal datasets for object understanding or robotic manipulation have emerged, 
+              including Touch100k and OBJECTFOLDER 1.0 , which we have concisely summarized in Table 1. Point clouds can explicitly represent 3D structures through a dense set of points, enabling accurate geometric reconstruction and 
+              depth perception, with significant advantages in spatial understanding. The integration of visual and tactile modalities into 
+              a unified point cloud framework (called a visual-tactile point cloud) allows us to exploit the complementary strengths of both modalities. 
+              In this work, our aim is to construct a visual-tactile point cloud dataset from the real world for object understanding.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="img">
+    <div style="display: flex; justify-content: center; align-items: center;">  
+      <img src="./static/images/device.png" alt="Centered Image"/>  
+    </div>
+
+   
+
+  </section>
+  <section class="section3">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Fig. 2:  Multi-modal sensing platform and scanning device in our experiments. </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-8 publication-text">
+              This experimental platform integrates a vision camera and a robotic arm equipped with a tactile sensor, as shown in Fig. 3. 
+              The Intel RealSense D455 camera is used as the vision sensor, providing high-resolution RGB images and depth maps to support 
+              complex scene understanding and object recognition. The UR5 robotic arm is employed as the robotic manipulator, enabling precise 
+              operations through its six-degree-of-freedom design, high load capacity and flexible motion control. The self-developed E-Skin sensor
+               serves as the tactile sensor.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="experiencevedio">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="is-size-10 publication-text">
+              Calibration process for spatial position recognition of tactile sensors:
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+      <video autoplay controls muted loop playsinline style="width: 25%; justify-content: center;">
+        <source src="./static/images/tactile_cali.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+
+  <style>
+    /* 确保所有文字居中 */
+    .has-text-centered {
+      text-align: center;
+    }
+   
+    /* 去掉作者名字的超链接样式，仅保留文本 */
+    .publication-authors .author-block a {
+      text-decoration: none; /* 去掉下划线 */
+      color: inherit;         /* 继承父元素颜色 */
+      pointer-events: none;   /* 禁用鼠标事件，防止点击 */
+      cursor: default;        /* 鼠标指针变为默认样式 */
+    }
+   
+    /* 可选：优化链接按钮的显示，使整体看起来更整齐 */
+    .publication-links .link-block {
+      margin: 0 5px;
+    }
+  </style>
+</body>
+</html>
